@@ -1,0 +1,10 @@
+[package]
+name = "darwin-webkit"
+version = "0.1.0"
+authors = ["yamadapc <tacla.yamada@gmail.com>"]
+
+[dependencies]
+cocoa = "0.18.4"
+core-graphics = "0.17.3"
+libc = "0.2.45"
+objc = "0.2.5"
