@@ -1,13 +1,7 @@
 extern crate cocoa;
 extern crate darwin_webkit;
 
-use cocoa::appkit::*;
-use cocoa::base::*;
-use cocoa::foundation::*;
-
-use darwin_webkit::foundation::*;
 use darwin_webkit::helpers::*;
-use darwin_webkit::webkit::*;
 
 fn main() {
     unsafe {
