@@ -1,7 +1,7 @@
 extern crate cocoa;
 extern crate darwin_webkit;
 
-use darwin_webkit::helpers::*;
+use darwin_webkit::helpers::dwk_app::DarwinWKApp;
 
 fn main() {
     unsafe {
