@@ -1,25 +1,12 @@
-//! Higher-level wrapper.
-//!
-//! Exposes two structs:
-//!
-//! `DarwinWKApp`, which is not to be used seriously but
-//! nice for testing. This configures the `NSApplication` and opens a
-//! `NSWindow`.
-//!
-//! `DarwinWKWebView` wraps `WKWebView`, but unlike generic wrappers, allows
-//! for it to be used in the context of an existing window (for example, in vst
-//! plugins).
+use super::dwk_webview::*;
+
 use cocoa::appkit::{
     NSApp, NSApplication, NSApplicationActivateIgnoringOtherApps,
     NSApplicationActivationPolicyRegular, NSBackingStoreBuffered, NSMenu, NSMenuItem,
-    NSRunningApplication, NSView, NSViewHeightSizable, NSViewWidthSizable, NSWindow,
-    NSWindowStyleMask,
+    NSRunningApplication, NSWindow, NSWindowStyleMask,
 };
 use cocoa::base::{id, nil, selector, NO};
 use cocoa::foundation::{NSAutoreleasePool, NSPoint, NSProcessInfo, NSRect, NSSize, NSString};
-
-use foundation::*;
-use webkit::*;
 
 pub struct DarwinWKApp {
     pub nsapp: id,
@@ -64,7 +51,8 @@ impl DarwinWKApp {
                 styleMask,
                 NSBackingStoreBuffered,
                 NO,
-            ).autorelease();
+            )
+            .autorelease();
         window.cascadeTopLeftFromPoint_(NSPoint::new(20., 20.));
         window.center();
 
@@ -90,33 +78,7 @@ impl DarwinWKApp {
     }
 
     pub unsafe fn set_webview(&self, webview: &DarwinWKWebView) {
-        self.main_window.setContentView_(webview.webview);
-    }
-}
-
-pub struct DarwinWKWebView {
-    webview: id,
-}
-
-impl DarwinWKWebView {
-    pub unsafe fn new(frame: NSRect) -> DarwinWKWebView {
-        let configuration = WKWebViewConfiguration::init(
-            WKWebViewConfiguration::alloc(nil)
-        );
-        let webview = WKWebView::alloc(nil)
-            .initWithFrame_configuration_(frame, configuration);
-
-        NSView::setAutoresizingMask_(webview, NSViewWidthSizable | NSViewHeightSizable);
-
-        DarwinWKWebView {
-            webview,
-        }
-    }
-
-    pub unsafe fn load_url(&self, url: &str) {
-        let url = NSString::alloc(nil).init_str(url);
-        let url = NSURL::alloc(nil).initWithString_(url);
-        let req = NSURLRequest::alloc(nil).initWithURL_(url);
-        self.webview.loadRequest_(req);
+        self.main_window
+            .setContentView_(webview.get_native_handle());
     }
 }
