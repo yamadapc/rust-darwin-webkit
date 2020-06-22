@@ -29,4 +29,19 @@ impl DarwinWKWebView {
         let req = NSURLRequest::alloc(nil).initWithURL_(url);
         self.webview.loadRequest_(req);
     }
+
+    pub unsafe fn load_html_string(&self, html: &str, base_url: &str) {
+        let html = NSString::alloc(nil).init_str(html);
+        let base_url = NSString::alloc(nil).init_str(base_url);
+        let base_url = NSURL::alloc(nil).initWithString_(base_url);
+        self.webview.loadHTMLString_baseURL_(html, base_url);
+    }
+
+    pub unsafe fn evaluate_javascript(&self, javascript: &str, _result_handler: fn(id, id)) {
+        let javascript = NSString::alloc(nil).init_str(javascript);
+        self.webview
+            .evaluateJavaScript_(javascript, javascript_callback);
+    }
 }
+
+pub extern "C" fn javascript_callback(_: id, _: id) {}
