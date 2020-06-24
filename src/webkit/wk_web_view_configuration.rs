@@ -7,7 +7,7 @@ extern "C" {
 
 pub trait WKUserContentController: Sized {
     unsafe fn alloc(_: Self) -> id {
-        msg_send![class!(WKWebViewConfiguration), alloc]
+        msg_send![class!(WKUserContentController), alloc]
     }
     unsafe fn init(self) -> id;
 
