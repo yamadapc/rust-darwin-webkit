@@ -66,6 +66,14 @@ impl DarwinWKApp {
         };
     }
 
+    pub fn get_app_native_handle(&self) -> id {
+        self.nsapp
+    }
+
+    pub fn get_window_native_handle(&self) -> id {
+        self.main_window
+    }
+
     pub unsafe fn run(&self) {
         let current_app = NSRunningApplication::currentApplication(nil);
         current_app.activateWithOptions_(NSApplicationActivateIgnoringOtherApps);
