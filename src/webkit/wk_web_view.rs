@@ -1,3 +1,4 @@
+use block::Block;
 use cocoa::base::{id, BOOL};
 use cocoa::foundation::NSRect;
 use core_graphics::base::CGFloat;
@@ -96,7 +97,7 @@ pub trait WKWebView: Sized {
     unsafe fn evaluateJavaScript_(
         self,
         javascriptString: id,
-        completionHandler: extern "C" fn(id, id),
+        completionHandler: &Block<(id, id), ()>,
     );
 
     // Taking Snapshots
@@ -324,7 +325,7 @@ impl WKWebView for id {
     unsafe fn evaluateJavaScript_(
         self,
         javascriptString: id,
-        completionHandler: extern "C" fn(id, id),
+        completionHandler: &Block<(id, id), ()>,
     ) {
         msg_send![
             self,

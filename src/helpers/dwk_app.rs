@@ -77,7 +77,7 @@ impl DarwinWKApp {
         DarwinWKWebView::new(frame)
     }
 
-    pub unsafe fn set_webview(&self, webview: &DarwinWKWebView) {
+    pub unsafe fn set_webview<'a>(&'a self, webview: &'a DarwinWKWebView) {
         self.main_window
             .setContentView_(webview.get_native_handle());
     }

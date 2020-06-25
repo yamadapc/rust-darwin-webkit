@@ -2,6 +2,7 @@ use cocoa::appkit::{NSView, NSViewHeightSizable, NSViewWidthSizable};
 use cocoa::base::{id, nil};
 use cocoa::foundation::{NSRect, NSString};
 
+use block::ConcreteBlock;
 use foundation::*;
 use webkit::wk_script_message_handler::make_new_handler;
 use webkit::*;
@@ -54,17 +55,15 @@ impl DarwinWKWebView {
         self.webview.loadHTMLString_baseURL_(html, base_url);
     }
 
-    pub unsafe fn evaluate_javascript(
-        &self,
-        javascript: &str,
-        _result_handler: extern "C" fn(id, id),
-    ) {
+    pub unsafe fn evaluate_javascript(&self, javascript: &str) {
         let javascript = NSString::alloc(nil).init_str(javascript);
-        self.webview
-            .evaluateJavaScript_(javascript, javascript_callback);
+        let b = |_: id, _: id| {};
+        let b = ConcreteBlock::new(b);
+        let b = b.copy();
+        self.webview.evaluateJavaScript_(javascript, &b);
     }
 
-    pub unsafe fn add_message_handler<Func>(&self, name: &str, callback: &mut Func)
+    pub unsafe fn add_message_handler<'a, Func>(&'a self, name: &str, callback: &'a mut Func)
     where
         Func: FnMut(id, id),
     {

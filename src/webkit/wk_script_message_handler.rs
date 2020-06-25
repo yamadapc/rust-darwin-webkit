@@ -42,12 +42,10 @@ where
 }
 
 extern "C" fn get_instance_ptr(this: &Object, _sel: Sel) -> *const c_void {
-    println!("Getting instance ptr");
     unsafe { *this.get_ivar("_instance_ptr") }
 }
 
 extern "C" fn set_instance_ptr(this: &mut Object, _sel: Sel, instance_ptr: *const c_void) {
-    println!("Setting instance ptr {}", instance_ptr as u32);
     unsafe { this.set_ivar("_instance_ptr", instance_ptr) };
 }
 
