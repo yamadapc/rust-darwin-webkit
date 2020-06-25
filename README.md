@@ -69,3 +69,9 @@ fn main() {
     * Accessing the Service Type
     * Supporting Secure Coding
 - ...
+
+## Linting
+```bash
+cargo clippy
+```
+
