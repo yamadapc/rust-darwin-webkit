@@ -586,26 +586,3 @@ impl WKWebView for id {
         ]
     }
 }
-
-// #[cfg(test)]
-// mod test {
-//     use super::*;
-//     use cocoa::base::nil;
-//     use cocoa::foundation::{NSAutoreleasePool, NSPoint, NSSize};
-//     use webkit::wk_web_view_configuration::WKWebViewConfiguration;
-//     #[test]
-//     fn test_webview_configuration() {
-//         unsafe {
-//             let pool = NSAutoreleasePool::new(nil);
-//             println!("Init frame");
-//             let frame = NSRect::new(NSPoint::new(0., 0.), NSSize::new(800., 800.));
-//             println!("Init configuration");
-//             let configuration = WKWebViewConfiguration::init(WKWebViewConfiguration::alloc(nil));
-//             println!("Init webview");
-//             let webview = WKWebView::alloc(nil).initWithFrame_configuration_(frame, configuration);
-//             println!("Assert");
-//             assert!(webview.configuration() == configuration);
-//             pool.autorelease();
-//         }
-//     }
-// }
