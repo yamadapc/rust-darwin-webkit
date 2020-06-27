@@ -2,6 +2,9 @@
 **darwin_webkit** exposes bindings to some of the WebKit's API on MacOS for
 Rust. It uses the `objc` and `cocoa` crates to bind with Objective-C.
 
+Can be embedded onto audio plug-ins by getting the native webview handle and
+adding it to a plug-ins native `NSWindowView` handle.
+
 ## Example
 ```rust
 extern crate cocoa;
