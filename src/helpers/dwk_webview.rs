@@ -14,6 +14,8 @@ pub struct DarwinWKWebView {
 }
 
 impl DarwinWKWebView {
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn new(frame: NSRect) -> DarwinWKWebView {
         let configuration = WKWebViewConfiguration::init(WKWebViewConfiguration::alloc(nil));
         let content_controller = WKUserContentController::init(WKUserContentController::alloc(nil));
@@ -30,17 +32,19 @@ impl DarwinWKWebView {
     }
 
     pub fn get_native_handle(&self) -> id {
-        return self.webview;
+        self.webview
     }
 
     pub fn get_user_content_controller_handle(&self) -> id {
-        return self.content_controller;
+        self.content_controller
     }
 
     pub fn get_configuration_handle(&self) -> id {
-        return self.configuration;
+        self.configuration
     }
 
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn load_url(&self, url: &str) {
         let url = NSString::alloc(nil).init_str(url);
         let url = NSURL::alloc(nil).initWithString_(url);
@@ -48,6 +52,8 @@ impl DarwinWKWebView {
         self.webview.loadRequest_(req);
     }
 
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn load_html_string(&self, html: &str, base_url: &str) {
         let html = NSString::alloc(nil).init_str(html);
         let base_url = NSString::alloc(nil).init_str(base_url);
@@ -55,6 +61,8 @@ impl DarwinWKWebView {
         self.webview.loadHTMLString_baseURL_(html, base_url);
     }
 
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn evaluate_javascript(&self, javascript: &str) {
         let javascript = NSString::alloc(nil).init_str(javascript);
         let b = |_: id, _: id| {};
@@ -63,6 +71,8 @@ impl DarwinWKWebView {
         self.webview.evaluateJavaScript_(javascript, &b);
     }
 
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn add_message_handler<'a, Func>(&'a self, name: &str, callback: &'a mut Func)
     where
         Func: FnMut(id, id),

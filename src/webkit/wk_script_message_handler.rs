@@ -6,9 +6,17 @@ use objc::runtime::{Class, Object, Sel};
 use std::os::raw::c_void;
 
 pub trait WKScriptMessage: Sized {
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn body(self) -> id;
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn frameInfo(self) -> id;
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn name(self) -> id;
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn webView(self) -> id;
 }
 
@@ -49,6 +57,8 @@ extern "C" fn set_instance_ptr(this: &mut Object, _sel: Sel, instance_ptr: *cons
     unsafe { this.set_ivar("_instance_ptr", instance_ptr) };
 }
 
+/// # Safety
+/// All the FFI functions are unsafe.
 pub unsafe fn make_new_handler<Func>(name: &str, func: &mut Func) -> id
 where
     Func: FnMut(id, id),
@@ -80,7 +90,12 @@ where
 }
 
 pub trait WKScriptMessageHandlerBridge: Sized {
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn instancePtr(self) -> *mut c_void;
+
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn setInstancePtr(self, _: *mut c_void);
 }
 

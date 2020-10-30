@@ -11,19 +11,29 @@ extern "C" {
 }
 
 pub trait NSURLRequest: Sized {
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn alloc(_: Self) -> id {
         msg_send![class!(NSURLRequest), alloc]
     }
 
     // Creating Requests
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn requestWithURL_(_: Self, url: id) -> id;
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn initWithURL_(self, url: id) -> id;
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn requestWithURL_cachePolicy_timeoutInterval(
         _: Self,
         url: id,
         cachePolicy: id,
         timeoutInterval: NSTimeInterval,
     ) -> id;
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn initWithURL_cachePolicy_timeoutInterval(
         self,
         url: id,

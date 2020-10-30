@@ -6,6 +6,8 @@ extern "C" {
 }
 
 pub trait WKNavigation: Sized {
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn alloc(_: Self) -> id {
         msg_send![class!(WKNavigation), alloc]
     }

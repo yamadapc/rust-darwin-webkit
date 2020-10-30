@@ -14,6 +14,8 @@ pub struct DarwinWKApp {
 }
 
 impl DarwinWKApp {
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn new(windowTitle: &str) -> DarwinWKApp {
         let _pool = NSAutoreleasePool::new(nil);
 
@@ -60,10 +62,10 @@ impl DarwinWKApp {
         window.setTitle_(title);
         window.makeKeyAndOrderFront_(nil);
 
-        return DarwinWKApp {
+        DarwinWKApp {
             nsapp: app,
             main_window: window,
-        };
+        }
     }
 
     pub fn get_app_native_handle(&self) -> id {
@@ -74,17 +76,23 @@ impl DarwinWKApp {
         self.main_window
     }
 
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn run(&self) {
         let current_app = NSRunningApplication::currentApplication(nil);
         current_app.activateWithOptions_(NSApplicationActivateIgnoringOtherApps);
         self.nsapp.run();
     }
 
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn create_webview(&self) -> DarwinWKWebView {
         let frame = NSWindow::frame(self.main_window);
         DarwinWKWebView::new(frame)
     }
 
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn set_webview<'a>(&'a self, webview: &'a DarwinWKWebView) {
         self.main_window
             .setContentView_(webview.get_native_handle());

@@ -30,7 +30,13 @@ pub trait WKWebView: Sized {
     /// # Category
     /// Initializing a Web View
     unsafe fn configuration(self) -> id;
+
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn initWithFrame_configuration_(self, frameRect: NSRect, configuration: id) -> id;
+
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn initWithCoder_(self, coder: id) -> id;
 
     /// # Safety
@@ -39,9 +45,21 @@ pub trait WKWebView: Sized {
     /// # Category
     /// Inspecting the View Information
     unsafe fn scrollView(self) -> id;
+
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn title(self) -> id;
+
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn URL(self) -> id;
+
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn customUserAgent(self) -> id;
+
+    /// # Safety
+    /// All the FFI functions are unsafe.
     unsafe fn setCustomUserAgent_(self, customUserAgent: id);
 
     // Maybe there's setCustomerUserAgent too ???
