@@ -67,7 +67,7 @@ impl DarwinWKWebView {
     where
         Func: FnMut(id, id),
     {
-        let handler = make_new_handler("DWKDefaultHandler", callback);
+        let handler = make_new_handler(format!("DWKHandler_{}", name).as_str(), callback);
         let name = NSString::alloc(nil).init_str(name);
         self.content_controller
             .addScriptMessageHandler(handler, name);
