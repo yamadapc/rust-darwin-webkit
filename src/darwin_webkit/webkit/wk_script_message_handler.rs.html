@@ -162,6 +162,8 @@
 <span id="161">161</span>
 <span id="162">162</span>
 <span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Wraps the WKScriptMessageHandler protocol in Rust</span>
 
@@ -226,11 +228,13 @@
 <span class="doccomment">/// it can be registered onto the `WKUserContentController` with</span>
 <span class="doccomment">/// `WKUserContentController::addScriptMessageHandler`.</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// **Closure captures are not working**</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Safety</span>
 <span class="doccomment">/// All the FFI functions are unsafe.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Your callback will be called from WebKit. If the WebView outlives it: 💥.</span>
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">make_new_handler</span><span class="op">&lt;</span><span class="ident">Func</span><span class="op">&gt;</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">func</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Func</span>) <span class="op">-&gt;</span> <span class="ident">id</span>
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">make_new_handler</span><span class="op">&lt;</span><span class="ident">Func</span><span class="op">&gt;</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">func</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Func</span>) <span class="op">-&gt;</span> <span class="ident">id</span>
 <span class="kw">where</span>
     <span class="ident">Func</span>: <span class="ident">FnMut</span>(<span class="ident">id</span>, <span class="ident">id</span>),
 {
@@ -255,7 +259,7 @@
     <span class="kw">let</span> <span class="ident">class</span> <span class="op">=</span> <span class="ident">Class</span>::<span class="ident">get</span>(<span class="ident">name</span>).<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">instance</span>: <span class="ident">id</span> <span class="op">=</span> <span class="macro">msg_send</span><span class="macro">!</span>[<span class="ident">class</span>, <span class="ident">alloc</span>];
     <span class="kw">let</span> <span class="ident">instance</span>: <span class="ident">id</span> <span class="op">=</span> <span class="macro">msg_send</span><span class="macro">!</span>[<span class="ident">instance</span>, <span class="ident">init</span>];
-    <span class="ident">instance</span>.<span class="ident">setInstancePtr</span>(<span class="ident">func</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Func</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>);
+    <span class="ident">instance</span>.<span class="ident">setInstancePtr</span>(<span class="ident">func</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>);
 
     <span class="ident">instance</span>
 }

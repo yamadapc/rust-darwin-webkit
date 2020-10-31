@@ -132,6 +132,13 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! `DarwinWKApp` configures the `NSApplication` and opens a `NSWindow`.</span>
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">dwk_webview</span>::<span class="kw-2">*</span>;
@@ -248,6 +255,10 @@
         <span class="self">self</span>.<span class="ident">nsapp</span>.<span class="ident">run</span>();
     }
 
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">stop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="macro">msg_send</span><span class="macro">!</span>[<span class="self">self</span>.<span class="ident">nsapp</span>, <span class="ident">stop</span>: <span class="ident">nil</span>]
+    }
+
     <span class="doccomment">/// Create a webview that has this app window&#39;s frame.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
@@ -266,5 +277,8 @@
             .<span class="ident">setContentView_</span>(<span class="ident">webview</span>.<span class="ident">get_native_handle</span>());
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DarwinWKApp</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DarwinWKApp</span> {}
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "darwin_webkit";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
