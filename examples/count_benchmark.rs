@@ -5,15 +5,12 @@ extern crate darwin_webkit;
 use cocoa::base::id;
 use darwin_webkit::helpers::dwk_app::DarwinWKApp;
 use darwin_webkit::helpers::dwk_webview::DarwinWKWebView;
-use std::sync::mpsc::channel;
+use std::sync::mpsc::{channel, Receiver};
 use std::sync::Arc;
 use std::thread;
 use std::time::{Duration, Instant};
 
-unsafe fn count_with_message_handlers(
-    webview: Arc<DarwinWKWebView>,
-    n: u64,
-) -> Arc<DarwinWKWebView> {
+unsafe fn setup_count_bench(webview: Arc<DarwinWKWebView>, n: u64) -> Receiver<()> {
     println!("Starting webview");
     let (sender, receiver) = channel();
 
@@ -34,25 +31,19 @@ unsafe fn count_with_message_handlers(
         }
     })));
 
-    let start_webview = webview.clone();
-    start_webview.add_message_handler("general", callback);
-    let start = Instant::now();
-    dispatch::Queue::main().exec_async(move || {
-        println!("Sending message 1");
-        start_webview.evaluate_javascript("onMessage('1')");
-    });
+    webview.add_message_handler("general", callback);
 
-    receiver.recv().unwrap();
-    let duration = start.elapsed();
-    println!("Finished in {:?} - Sent {:?} messages", duration, n);
-    let average_duration: f64 = (duration.as_millis() as f64) / (n as f64);
-    println!("Average: {:?}ms", average_duration);
-
-    println!("Thread waiting");
-    webview
+    receiver
 }
 
 fn main() {
+    println!("Measuring latency to send and receive messages from a WebView.");
+    println!("Will:\n");
+    println!("  1. Send a message to JavaScript");
+    println!("  2. When a message is received in JavaScript, send a message back");
+    println!("  3. When a message is received in Rust, send a message back");
+    println!("  4. Measure the time to send N messages in this fashion");
+    println!("\nThe result should indicate the round-trip latency of sending/receiving messages to/from JavaScript");
     unsafe {
         let app = Arc::new(DarwinWKApp::new("Host an app"));
         let webview = Arc::new(app.create_webview());
@@ -72,7 +63,23 @@ fn main() {
         let main_thread_app = app.clone();
         let main_thread = thread::spawn(move || {
             thread::sleep(Duration::from_secs(1));
-            count_with_message_handlers(webview.clone(), 50000);
+
+            println!("Setting-up webview for test");
+            let max = 100000;
+            let receiver = setup_count_bench(webview.clone(), max);
+
+            println!("Starting to send {} messages", max);
+            let start = Instant::now();
+            let start_webview = webview.clone();
+            dispatch::Queue::main().exec_async(move || {
+                start_webview.evaluate_javascript("onMessage('1')");
+            });
+            receiver.recv().unwrap();
+            let duration = start.elapsed();
+            println!("Finished in {:?} - Sent {:?} messages", duration, max);
+            let average_duration: f64 = (duration.as_millis() as f64) / (max as f64);
+            println!("Average: {:?}ms", average_duration);
+
             main_thread_app.stop();
         });
 
