@@ -63,18 +63,6 @@ fn main() {
         webview.load_html_string(
             r"
                 <script>
-                window.onerror = (msg, url, line, column, error) => {
-                  const message = {
-                    message: msg,
-                    url: url,
-                    line: line,
-                    column: column,
-                    error: JSON.stringify(error)
-                  }
-
-                  window.webkit.messageHandlers.general.postMessage(JSON.stringify(message));
-                };
-
                 window.onMessage = function onMessage(n) {
                     // n = +n;
                     window.webkit.messageHandlers.general.postMessage(null);

@@ -119,7 +119,6 @@ impl DarwinWKWebView {
                 println!("Error {}", str.as_ref().unwrap().as_str());
                 return;
             }
-            // println!("Evaluated");
         };
         let b = ConcreteBlock::new(b);
         let b = b.copy();
