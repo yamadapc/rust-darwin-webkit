@@ -113,6 +113,10 @@ impl DarwinWKApp {
         self.nsapp.run();
     }
 
+    pub unsafe fn stop(&self) {
+        msg_send![self.nsapp, stop: nil]
+    }
+
     /// Create a webview that has this app window's frame.
     ///
     /// # Safety
@@ -131,3 +135,6 @@ impl DarwinWKApp {
             .setContentView_(webview.get_native_handle());
     }
 }
+
+unsafe impl Send for DarwinWKApp {}
+unsafe impl Sync for DarwinWKApp {}

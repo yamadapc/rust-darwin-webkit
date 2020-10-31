@@ -105,13 +105,23 @@ impl DarwinWKWebView {
     /// All the FFI functions are unsafe.
     pub unsafe fn evaluate_javascript(&self, javascript: &str) {
         let javascript = NSString::alloc(nil).init_str(javascript);
-        let b = |_: id, _: id| {};
+        let b = |_: id, error: id| {
+            if error != nil {
+                let str = msg_send![error, localizedDescription];
+                let str = string_from_nsstring(str);
+                println!("Error {}", str.as_ref().unwrap().as_str());
+                return;
+            }
+            println!("Evaluated");
+        };
         let b = ConcreteBlock::new(b);
         let b = b.copy();
         self.webview.evaluateJavaScript_(javascript, &b);
     }
 
     /// Register a callback into the WebView.
+    ///
+    /// **Closure captures are not working**
     ///
     /// Calls `make_new_handler` under the hood. The callback should have form:
     ///
@@ -129,7 +139,7 @@ impl DarwinWKWebView {
     /// All the FFI functions are unsafe.
     ///
     /// Your callback will be called from WebKit. If the WebView outlives it: 💥.
-    pub unsafe fn add_message_handler<'a, Func>(&'a self, name: &str, callback: &'a mut Func)
+    pub unsafe fn add_message_handler<Func>(&self, name: &str, callback: *mut Func)
     where
         Func: FnMut(id, id),
     {
@@ -141,3 +151,15 @@ impl DarwinWKWebView {
 }
 
 pub extern "C" fn javascript_callback(_: id, _: id) {}
+
+unsafe impl Send for DarwinWKWebView {}
+unsafe impl Sync for DarwinWKWebView {}
+
+pub unsafe fn string_from_nsstring(nsstring: id) -> *mut String {
+    let str = Box::new(String::from_utf8_unchecked(Vec::from_raw_parts(
+        nsstring.UTF8String() as *mut u8,
+        nsstring.len(),
+        nsstring.len(),
+    )));
+    Box::into_raw(str)
+}

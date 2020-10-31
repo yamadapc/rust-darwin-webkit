@@ -61,11 +61,13 @@ extern "C" fn set_instance_ptr(this: &mut Object, _sel: Sel, instance_ptr: *cons
 /// it can be registered onto the `WKUserContentController` with
 /// `WKUserContentController::addScriptMessageHandler`.
 ///
+/// **Closure captures are not working**
+///
 /// # Safety
 /// All the FFI functions are unsafe.
 ///
 /// Your callback will be called from WebKit. If the WebView outlives it: 💥.
-pub unsafe fn make_new_handler<Func>(name: &str, func: &mut Func) -> id
+pub unsafe fn make_new_handler<Func>(name: &str, func: *mut Func) -> id
 where
     Func: FnMut(id, id),
 {
@@ -90,7 +92,7 @@ where
     let class = Class::get(name).unwrap();
     let instance: id = msg_send![class, alloc];
     let instance: id = msg_send![instance, init];
-    instance.setInstancePtr(func as *mut Func as *mut c_void);
+    instance.setInstancePtr(func as *mut c_void);
 
     instance
 }

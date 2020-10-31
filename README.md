@@ -8,6 +8,8 @@
 
 - - -
 
+**Closure captures are not working**
+
 **darwin_webkit** exposes bindings to some of the WebKit's API on MacOS for
 Rust. It uses the `objc` and `cocoa` crates to bind with Objective-C.
 
