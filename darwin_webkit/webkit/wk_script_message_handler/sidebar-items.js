@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["make_new_handler","Safety All the FFI functions are unsafe."]],"trait":[["WKScriptMessage",""],["WKScriptMessageHandlerBridge",""]]});
+initSidebarItems({"fn":[["make_new_handler","Wraps a callback of type `FnMut(id /* WKUserContentController */, id /* WKScriptMessage */)` so it can be registered onto the `WKUserContentController` with `WKUserContentController::addScriptMessageHandler`."]],"trait":[["WKScriptMessage",""],["WKScriptMessageHandlerBridge",""]]});
