@@ -14,6 +14,11 @@ Rust. It uses the `objc` and `cocoa` crates to bind with Objective-C.
 Can be embedded onto audio plug-ins by getting the native webview handle and
 adding it to a plug-ins native `NSWindowView` handle.
 
+## Install
+```
+cargo add darwin-webkit
+```
+
 ## Example
 ```rust
 extern crate cocoa;
