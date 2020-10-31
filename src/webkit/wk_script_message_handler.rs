@@ -57,6 +57,10 @@ extern "C" fn set_instance_ptr(this: &mut Object, _sel: Sel, instance_ptr: *cons
     unsafe { this.set_ivar("_instance_ptr", instance_ptr) };
 }
 
+/// Wraps a callback of type `FnMut(id /* WKUserContentController */, id /* WKScriptMessage */)` so
+/// it can be registered onto the `WKUserContentController` with
+/// `WKUserContentController::addScriptMessageHandler`.
+///
 /// # Safety
 /// All the FFI functions are unsafe.
 pub unsafe fn make_new_handler<Func>(name: &str, func: &mut Func) -> id
