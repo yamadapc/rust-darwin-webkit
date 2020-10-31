@@ -1,5 +1,6 @@
 [package]
 name = "darwin-webkit"
+description = "Bindings to some of the WebKit's API on MacOS for Rust"
 version = "0.1.0"
 authors = ["Pedro Tacla Yamada <tacla.yamada@gmail.com>"]
 license = "MIT"
