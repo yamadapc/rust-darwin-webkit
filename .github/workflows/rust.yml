@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install rust nightly
+      run: rustup install nightly
     - name: Install grcov
       run: |
         cargo +nightly install grcov
