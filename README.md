@@ -9,13 +9,13 @@
 
 - - -
 
-**Closure captures are not working**
-
 **darwin_webkit** exposes bindings to some of the WebKit's API on MacOS for
 Rust. It uses the `objc` and `cocoa` crates to bind with Objective-C.
 
 Can be embedded onto audio plug-ins by getting the native webview handle and
 adding it to a plug-ins native `NSWindowView` handle.
+
+**Closure captures are unsafe as we'll just pass pointers around.**
 
 ## Install
 ```

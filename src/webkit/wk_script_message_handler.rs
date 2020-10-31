@@ -61,8 +61,6 @@ extern "C" fn set_instance_ptr(this: &mut Object, _sel: Sel, instance_ptr: *cons
 /// it can be registered onto the `WKUserContentController` with
 /// `WKUserContentController::addScriptMessageHandler`.
 ///
-/// **Closure captures are not working**
-///
 /// # Safety
 /// All the FFI functions are unsafe.
 ///

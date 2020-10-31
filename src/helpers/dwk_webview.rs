@@ -127,8 +127,6 @@ impl DarwinWKWebView {
 
     /// Register a callback into the WebView.
     ///
-    /// **Closure captures are not working**
-    ///
     /// Calls `make_new_handler` under the hood. The callback should have form:
     ///
     /// ```compile_fail
