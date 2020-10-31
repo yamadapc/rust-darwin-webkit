@@ -113,6 +113,10 @@ impl DarwinWKApp {
         self.nsapp.run();
     }
 
+    /// Stop the NSApplication run loop.
+    ///
+    /// # Safety
+    /// All the FFI functions are unsafe.
     pub unsafe fn stop(&self) {
         msg_send![self.nsapp, stop: nil]
     }

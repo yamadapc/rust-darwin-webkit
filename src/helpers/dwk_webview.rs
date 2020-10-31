@@ -161,6 +161,10 @@ pub extern "C" fn javascript_callback(_: id, _: id) {}
 unsafe impl Send for DarwinWKWebView {}
 unsafe impl Sync for DarwinWKWebView {}
 
+/// Create a `String` pointer from a `NSString`.
+///
+/// # Safety
+/// All the FFI functions are unsafe.
 pub unsafe fn string_from_nsstring(nsstring: id) -> *mut String {
     let len = nsstring.len();
     let str = Box::new(String::from_utf8_unchecked(Vec::from_raw_parts(
