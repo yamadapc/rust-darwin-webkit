@@ -22,3 +22,8 @@ jobs:
       run: |
         rustup component add clippy
         cargo clippy
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build_output
+        path: target/debug
+
