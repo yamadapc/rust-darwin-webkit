@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["foundation","Exposes some dependencies to using the WKWebView APIs."],["helpers","Higher-level wrapper."],["webkit","Exposes bindings to the `WKWebView` API."]]});

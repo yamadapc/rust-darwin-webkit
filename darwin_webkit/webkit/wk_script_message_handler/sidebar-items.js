@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["make_new_handler","Safety All the FFI functions are unsafe."]],"trait":[["WKScriptMessage",""],["WKScriptMessageHandlerBridge",""]]});

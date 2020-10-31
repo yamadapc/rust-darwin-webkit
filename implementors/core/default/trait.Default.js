@@ -1,0 +1,5 @@
+(function() {var implementors = {};
+implementors["core_foundation"] = [{"text":"impl Default for CFMutableAttributedString","synthetic":false,"types":[]},{"text":"impl&lt;K, V&gt; Default for CFMutableDictionary&lt;K, V&gt;","synthetic":false,"types":[]},{"text":"impl Default for CFTimeZone","synthetic":false,"types":[]},{"text":"impl Default for CFUUID","synthetic":false,"types":[]}];
+implementors["core_foundation_sys"] = [{"text":"impl Default for CFUUIDBytes","synthetic":false,"types":[]}];
+implementors["core_graphics"] = [{"text":"impl Default for CGSize","synthetic":false,"types":[]},{"text":"impl Default for CGPoint","synthetic":false,"types":[]},{"text":"impl Default for CGRect","synthetic":false,"types":[]},{"text":"impl Default for CGAffineTransform","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
