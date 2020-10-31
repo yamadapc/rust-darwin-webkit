@@ -16,8 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install grcov
+      run: |
+        cargo +nightly install grcov
     - name: Build and test with coverage
-      run: ./scripts/build-and-test-with-coverage.sh
+      run: |
+        ./scripts/build-and-test-with-coverage.sh
     - uses: actions/upload-artifact@v2
       with:
         name: build_output
