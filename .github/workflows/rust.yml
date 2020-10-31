@@ -26,10 +26,3 @@ jobs:
       run: |
         rustup component add clippy
         cargo clippy
-    - name: Build documentation
-      run: cargo doc
-    - uses: actions/upload-artifact@v2
-      with:
-        name: documentation
-        path: target/doc
-
