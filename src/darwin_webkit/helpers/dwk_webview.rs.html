@@ -171,6 +171,10 @@
 <span id="170">170</span>
 <span id="171">171</span>
 <span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Wraps a `WKWebView`, `WKWebViewConfiguration` &amp; `WKUserContentController`</span>
 <span class="kw">use</span> <span class="ident">cocoa</span>::<span class="ident">appkit</span>::{<span class="ident">NSView</span>, <span class="ident">NSViewHeightSizable</span>, <span class="ident">NSViewWidthSizable</span>};
@@ -335,6 +339,10 @@
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DarwinWKWebView</span> {}
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DarwinWKWebView</span> {}
 
+<span class="doccomment">/// Create a `String` pointer from a `NSString`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Safety</span>
+<span class="doccomment">/// All the FFI functions are unsafe.</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">string_from_nsstring</span>(<span class="ident">nsstring</span>: <span class="ident">id</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">String</span> {
     <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">nsstring</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">str</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">String</span>::<span class="ident">from_utf8_unchecked</span>(<span class="ident">Vec</span>::<span class="ident">from_raw_parts</span>(
