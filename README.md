@@ -1,6 +1,11 @@
 # rust-darwin-webkit
 
-[Documentation](https://yamadapc.github.io/rust-darwin-webkit/darwin_webkit/)
+![](https://github.com/yamadapc/rust-darwin-webkit/workflows/Rust/badge.svg)
+![](https://github.com/yamadapc/rust-darwin-webkit/workflows/Documentation/badge.svg)
+
+[**Documentation**](https://yamadapc.github.io/rust-darwin-webkit/darwin_webkit/)
+
+- - -
 
 **darwin_webkit** exposes bindings to some of the WebKit's API on MacOS for
 Rust. It uses the `objc` and `cocoa` crates to bind with Objective-C.
