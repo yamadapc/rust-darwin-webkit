@@ -12,7 +12,7 @@ The test works by:
 
 This can be illustrated by:
 
-<img src="COUNT_BENCHMARK.png" width="300" />
+<img src="COUNT_BENCHMARK.png" style="max-width: 300px" />
 
 **Note:** I did not do several runs, instead I'm only measuring the total time for 100k messages and calculating
 an average.
