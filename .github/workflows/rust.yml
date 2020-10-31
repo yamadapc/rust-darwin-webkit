@@ -21,4 +21,6 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Run linter
-      run: cargo clippy
+      run: |
+        rustup component add clippy
+        cargo clippy
