@@ -54,11 +54,11 @@ fn main() {
         let app = DarwinWKApp::new("Host an app");
         let webview = Rc::new(app.create_webview());
 
-        let mut callback = |_: id, _: id| {
+        let callback = Box::into_raw(Box::new(Box::new(|_: id, _: id| {
             println!("JavaScript called rust!");
             webview.evaluate_javascript("document.body.innerHTML += ' -> response from rust';");
-        };
-        webview.add_message_handler("hello", &mut callback);
+        })));
+        webview.add_message_handler("hello", callback);
         webview.load_html_string(
             "
             <script>
