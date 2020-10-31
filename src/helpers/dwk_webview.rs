@@ -13,25 +13,32 @@ use webkit::*;
 /// Can be used from a cocoa application with `get_native_handle` or with `DWKApp`.
 ///
 /// # Example
-/// ```
+/// ```no_run
+/// extern crate cocoa;
 /// use cocoa::base::id;
-/// use std::rc::Rc;
+/// use darwin_webkit::helpers::dwk_app::DarwinWKApp;
+/// use std::sync::Arc;
 ///
-/// let webview = Rc::new(app.create_webview());
+/// unsafe {
+///     let app = DarwinWKApp::new("Host an app");
+///     let webview = Arc::new(app.create_webview());
+///     
+///     let callback_webview = webview.clone();
+///     let callback = Box::into_raw(Box::new(Box::new(|_: id, _: id| {
+///         println!("JavaScript called rust!");
+///         callback_webview.evaluate_javascript(
+///             "document.body.innerHTML += ' -> response from rust<br />';"
+///         );
+///     })));
 ///
-/// let mut callback = |_: id, _: id| {
-///     println!("JavaScript called rust!");
-///     webview.evaluate_javascript(
-///         "document.body.innerHTML += ' -> response from rust<br />';"
-///     );
-/// };
-/// webview.add_message_handler("hello", &mut callback);
-/// webview.load_html_string("
-///     <script>
-///         document.body.innerHTML += 'start';
-///         window.webkit.messageHandlers.hello.postMessage('hello');
-///     </script>
-/// ", "", );
+///     webview.add_message_handler("hello", callback);
+///     webview.load_html_string("
+///         <script>
+///             document.body.innerHTML += 'start';
+///             window.webkit.messageHandlers.hello.postMessage('hello');
+///         </script>
+///     ", "", );
+/// }
 /// ```
 pub struct DarwinWKWebView {
     webview: id,
@@ -112,7 +119,7 @@ impl DarwinWKWebView {
                 println!("Error {}", str.as_ref().unwrap().as_str());
                 return;
             }
-            println!("Evaluated");
+            // println!("Evaluated");
         };
         let b = ConcreteBlock::new(b);
         let b = b.copy();
@@ -125,7 +132,7 @@ impl DarwinWKWebView {
     ///
     /// Calls `make_new_handler` under the hood. The callback should have form:
     ///
-    /// ```
+    /// ```compile_fail
     /// FnMut(id /* WKUserContentController */, id /* WKScriptMessage */)
     /// ```
     ///
@@ -156,10 +163,11 @@ unsafe impl Send for DarwinWKWebView {}
 unsafe impl Sync for DarwinWKWebView {}
 
 pub unsafe fn string_from_nsstring(nsstring: id) -> *mut String {
+    let len = nsstring.len();
     let str = Box::new(String::from_utf8_unchecked(Vec::from_raw_parts(
         nsstring.UTF8String() as *mut u8,
-        nsstring.len(),
-        nsstring.len(),
+        len,
+        len,
     )));
     Box::into_raw(str)
 }

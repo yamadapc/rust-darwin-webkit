@@ -44,7 +44,7 @@ where
 {
     unsafe {
         let instance_ptr: *mut c_void = msg_send![this, instancePtr];
-        let instance_ptr: &mut Func = &mut *(instance_ptr as *mut Func);
+        let instance_ptr: *mut Func = instance_ptr as *mut Func;
         (*instance_ptr)(controller, message);
     }
 }
@@ -148,11 +148,12 @@ mod test {
             {
                 let called: Rc<RefCell<bool>> = Rc::new(RefCell::new(false));
                 let local_called = called.clone();
-                let mut callback = move |_: id, _: id| {
+                let callback = Box::new(Box::new(move |_: id, _: id| {
                     let cell: &RefCell<bool> = called.borrow();
                     cell.replace(true);
-                };
-                let handler = make_new_handler("default", &mut callback);
+                }));
+                let callback = Box::into_raw(callback);
+                let handler = make_new_handler("default", callback);
 
                 let _: id =
                     msg_send![handler, userContentController:nil didReceiveScriptMessage:nil];

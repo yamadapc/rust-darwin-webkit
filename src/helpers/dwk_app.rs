@@ -15,7 +15,7 @@ use cocoa::foundation::{NSAutoreleasePool, NSPoint, NSProcessInfo, NSRect, NSSiz
 ///
 /// # Example
 ///
-/// ```
+/// ```no_run
 /// use darwin_webkit::helpers::dwk_app::DarwinWKApp;
 /// use std::rc::Rc;
 ///
