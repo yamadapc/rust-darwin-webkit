@@ -8,12 +8,17 @@ use cocoa::appkit::{
 use cocoa::base::{id, nil, selector, NO};
 use cocoa::foundation::{NSAutoreleasePool, NSPoint, NSProcessInfo, NSRect, NSSize, NSString};
 
+/// Wraps an NSApplication instance with a main window that contains WebView.
 pub struct DarwinWKApp {
-    pub nsapp: id,
-    pub main_window: id,
+    /// The NSApplication instance
+    nsapp: id,
+    /// The NSWindow instance
+    main_window: id,
 }
 
 impl DarwinWKApp {
+    /// Create an app with the given window title
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn new(windowTitle: &str) -> DarwinWKApp {
@@ -68,14 +73,18 @@ impl DarwinWKApp {
         }
     }
 
+    /// Get the NSApplication handle
     pub fn get_app_native_handle(&self) -> id {
         self.nsapp
     }
 
+    /// Get the NSWindow handle
     pub fn get_window_native_handle(&self) -> id {
         self.main_window
     }
 
+    /// Start the NSApplication and activate it ignoring other apps so it comes to front.
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn run(&self) {
@@ -84,6 +93,8 @@ impl DarwinWKApp {
         self.nsapp.run();
     }
 
+    /// Create a webview that has this app window's frame.
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn create_webview(&self) -> DarwinWKWebView {
@@ -91,6 +102,8 @@ impl DarwinWKApp {
         DarwinWKWebView::new(frame)
     }
 
+    /// Set the content view of the main window to a certain webview
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn set_webview<'a>(&'a self, webview: &'a DarwinWKWebView) {

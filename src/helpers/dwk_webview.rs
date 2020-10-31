@@ -7,6 +7,28 @@ use foundation::*;
 use webkit::wk_script_message_handler::make_new_handler;
 use webkit::*;
 
+/// Wraps a WebView, Configuration & ContentController
+/// # Example
+/// ```
+/// use cocoa::base::id;
+/// use std::rc::Rc;
+///
+/// let webview = Rc::new(app.create_webview());
+///
+/// let mut callback = |_: id, _: id| {
+///     println!("JavaScript called rust!");
+///     webview.evaluate_javascript(
+///         "document.body.innerHTML += ' -> response from rust<br />';"
+///     );
+/// };
+/// webview.add_message_handler("hello", &mut callback);
+/// webview.load_html_string("
+///     <script>
+///         document.body.innerHTML += 'start';
+///         window.webkit.messageHandlers.hello.postMessage('hello');
+///     </script>
+/// ", "", );
+/// ```
 pub struct DarwinWKWebView {
     webview: id,
     configuration: id,
@@ -14,6 +36,11 @@ pub struct DarwinWKWebView {
 }
 
 impl DarwinWKWebView {
+    /// Create a webview with the given frame rect. Also creates the supporting configuration and
+    /// content controller.
+    ///
+    /// Thee view is resizable other options are empty.
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn new(frame: NSRect) -> DarwinWKWebView {
@@ -31,18 +58,23 @@ impl DarwinWKWebView {
         }
     }
 
+    /// Get the `WKWebView` instance
     pub fn get_native_handle(&self) -> id {
         self.webview
     }
 
+    /// Get the `WKUserContentController` instance
     pub fn get_user_content_controller_handle(&self) -> id {
         self.content_controller
     }
 
+    /// Get the `WKWebViewConfiguration` instance
     pub fn get_configuration_handle(&self) -> id {
         self.configuration
     }
 
+    /// Load an URL onto the WebView.
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn load_url(&self, url: &str) {
@@ -52,6 +84,8 @@ impl DarwinWKWebView {
         self.webview.loadRequest_(req);
     }
 
+    /// Load an HTML string onto the WebView.
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn load_html_string(&self, html: &str, base_url: &str) {
@@ -61,6 +95,8 @@ impl DarwinWKWebView {
         self.webview.loadHTMLString_baseURL_(html, base_url);
     }
 
+    /// Evaluate a JavaScript string on the WebView
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn evaluate_javascript(&self, javascript: &str) {
@@ -71,6 +107,20 @@ impl DarwinWKWebView {
         self.webview.evaluateJavaScript_(javascript, &b);
     }
 
+    /// Register a callback into the WebView.
+    ///
+    /// Calls `make_new_handler` under the hood. The callback should have form:
+    ///
+    /// ```
+    /// FnMut(id /* WKUserContentController */, id /* WKScriptMessage */)
+    /// ```
+    ///
+    /// The handler will be available from JavaScript through:
+    ///
+    /// ```javascript
+    /// window.webkit.messageHandlers.name.postMessage('some message');
+    /// ```
+    ///
     /// # Safety
     /// All the FFI functions are unsafe.
     pub unsafe fn add_message_handler<'a, Func>(&'a self, name: &str, callback: &'a mut Func)
