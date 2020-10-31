@@ -18,12 +18,18 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build and test with coverage
       run: ./scripts/build-and-test-with-coverage.sh
-    - name: Run linter
-      run: |
-        rustup component add clippy
-        cargo clippy
     - uses: actions/upload-artifact@v2
       with:
         name: build_output
         path: target/debug
+    - name: Run linter
+      run: |
+        rustup component add clippy
+        cargo clippy
+    - name: Build documentation
+      run: cargo doc
+    - uses: actions/upload-artifact@v2
+      with:
+        name: documentation
+        path: target/doc
 
