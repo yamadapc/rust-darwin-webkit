@@ -63,6 +63,8 @@ extern "C" fn set_instance_ptr(this: &mut Object, _sel: Sel, instance_ptr: *cons
 ///
 /// # Safety
 /// All the FFI functions are unsafe.
+///
+/// Your callback will be called from WebKit. If the WebView outlives it: 💥.
 pub unsafe fn make_new_handler<Func>(name: &str, func: &mut Func) -> id
 where
     Func: FnMut(id, id),

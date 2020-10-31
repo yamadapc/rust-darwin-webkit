@@ -1,3 +1,4 @@
+//! `DarwinWKApp` configures the `NSApplication` and opens a `NSWindow`.
 use super::dwk_webview::*;
 
 use cocoa::appkit::{

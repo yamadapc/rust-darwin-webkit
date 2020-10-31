@@ -1,3 +1,4 @@
+//! Wraps a `WKWebView`, `WKWebViewConfiguration` & `WKUserContentController`
 use cocoa::appkit::{NSView, NSViewHeightSizable, NSViewWidthSizable};
 use cocoa::base::{id, nil};
 use cocoa::foundation::{NSRect, NSString};
@@ -126,6 +127,8 @@ impl DarwinWKWebView {
     ///
     /// # Safety
     /// All the FFI functions are unsafe.
+    ///
+    /// Your callback will be called from WebKit. If the WebView outlives it: 💥.
     pub unsafe fn add_message_handler<'a, Func>(&'a self, name: &str, callback: &'a mut Func)
     where
         Func: FnMut(id, id),
