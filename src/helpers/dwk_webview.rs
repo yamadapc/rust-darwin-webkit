@@ -7,7 +7,10 @@ use foundation::*;
 use webkit::wk_script_message_handler::make_new_handler;
 use webkit::*;
 
-/// Wraps a WebView, Configuration & ContentController
+/// Wraps a `WKWebView`, `WKWebViewConfiguration` & `WKUserContentController`
+///
+/// Can be used from a cocoa application with `get_native_handle` or with `DWKApp`.
+///
 /// # Example
 /// ```
 /// use cocoa::base::id;

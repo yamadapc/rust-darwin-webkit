@@ -9,6 +9,25 @@ use cocoa::base::{id, nil, selector, NO};
 use cocoa::foundation::{NSAutoreleasePool, NSPoint, NSProcessInfo, NSRect, NSSize, NSString};
 
 /// Wraps an NSApplication instance with a main window that contains WebView.
+///
+/// See `DarwinWKWebView` as well.
+///
+/// # Example
+///
+/// ```
+/// use darwin_webkit::helpers::dwk_app::DarwinWKApp;
+/// use std::rc::Rc;
+///
+/// unsafe {
+///     let app = DarwinWKApp::new("Host an app");
+///     let webview = Rc::new(app.create_webview());
+///
+///     // add handlers, load HTML, etc...
+///
+///     app.set_webview(&webview);
+///     app.run();
+/// }
+/// ```
 pub struct DarwinWKApp {
     /// The NSApplication instance
     nsapp: id,
