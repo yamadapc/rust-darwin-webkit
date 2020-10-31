@@ -24,10 +24,6 @@ jobs:
     - name: Build and test with coverage
       run: |
         ./scripts/build-and-test-with-coverage.sh
-    - uses: actions/upload-artifact@v2
-      with:
-        name: build_output
-        path: target/debug
     - name: Run linter
       run: |
         rustup component add clippy
