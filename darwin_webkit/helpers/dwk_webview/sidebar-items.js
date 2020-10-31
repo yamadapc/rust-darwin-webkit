@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["javascript_callback",""]],"struct":[["DarwinWKWebView",""]]});
+initSidebarItems({"fn":[["javascript_callback",""]],"struct":[["DarwinWKWebView","Wraps a `WKWebView`, `WKWebViewConfiguration` & `WKUserContentController`"]]});

@@ -25,6 +25,17 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! **darwin_webkit** exposes bindings to some of the WebKit&#39;s API on MacOS for</span>
 <span class="doccomment">//! Rust.</span>
@@ -40,6 +51,17 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! In `darwin_webkit::helpers` there&#39;s a very small higher level wrapper that</span>
 <span class="doccomment">//! may turn into a higher level API.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Callbacks from JavaScript to rust may be registered with:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * `darwin_webkit::webkit::wk_script_message_handler::make_new_handler`</span>
+<span class="doccomment">//! * or `darwin_webkit::helpers::DarwinWKWebView`</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Rust may evaluate JavaScript and HTML with:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! * `darwin_webkit::helpers::DarwinWKWebView::evaluate_javascript`</span>
+<span class="doccomment">//! * `darwin_webkit::helpers::DarwinWKWebView::load_url`</span>
+<span class="doccomment">//! * `darwin_webkit::helpers::DarwinWKWebView::load_html_string`</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">cocoa</span>;
