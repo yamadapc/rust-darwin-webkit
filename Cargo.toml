@@ -1,7 +1,11 @@
 [package]
 name = "darwin-webkit"
 version = "0.1.0"
-authors = ["yamadapc <tacla.yamada@gmail.com>"]
+authors = ["Pedro Tacla Yamada <tacla.yamada@gmail.com>"]
+license = "MIT"
+keywords = [ "macos", "webkit", "cocoa" ]
+readme = "README.md"
+repository = "https://github.com/yamadapc/rust-darwin-webkit"
 
 [dependencies]
 cocoa = "0.18.4"
