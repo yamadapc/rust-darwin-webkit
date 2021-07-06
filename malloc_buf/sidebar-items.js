@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["MallocBuffer","A type that represents a `malloc`'d chunk of memory."]]});
+initSidebarItems({"struct":[["MallocBuffer","A type that represents a `malloc`’d chunk of memory."]]});
