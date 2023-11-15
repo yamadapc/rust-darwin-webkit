@@ -16,14 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install rust nightly
-      run: rustup install nightly
-    - name: Install grcov
+    - name: Build
       run: |
-        cargo +nightly install grcov
-    - name: Build and test with coverage
+        cargo build
+    - name: Test
       run: |
-        ./scripts/build-and-test-with-coverage.sh
+        cargo test
     - name: Run linter
       run: |
         rustup component add clippy
