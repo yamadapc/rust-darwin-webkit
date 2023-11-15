@@ -1,3 +1,9 @@
+//! ![](https://github.com/yamadapc/rust-darwin-webkit/workflows/Rust/badge.svg)
+//! ![](https://github.com/yamadapc/rust-darwin-webkit/workflows/Documentation/badge.svg)
+//! ![Crates.io](https://img.shields.io/crates/v/darwin-webkit)
+//!
+//! * [**Documentation**](https://yamadapc.github.io/rust-darwin-webkit/darwin_webkit/)
+//! * [**Crate on crates.io**](https://crates.io/crates/darwin-webkit)
 //! **darwin_webkit** exposes bindings to some of the WebKit's API on MacOS for
 //! Rust.
 //!

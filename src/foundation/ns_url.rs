@@ -1,6 +1,6 @@
 //! Bindings for `NSURL`
 //!
-//! https://developer.apple.com/documentation/foundation/nsurl?language=objc
+//! <https://developer.apple.com/documentation/foundation/nsurl?language=objc>
 use cocoa::base::{id, BOOL};
 
 use crate::foundation::ns_url_bookmark_creation_options::{

@@ -2,7 +2,7 @@
 //!
 //! Incomplete bindings to `NSURLRequest`
 //!
-//! See https://developer.apple.com/documentation/foundation/nsurlrequest
+//! See <https://developer.apple.com/documentation/foundation/nsurlrequest>
 use cocoa::base::id;
 use cocoa::foundation::NSTimeInterval;
 
