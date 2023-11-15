@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["CGEventTapLocation","CGEventType","CGMouseButton"],"struct":["CGEvent","CGEventFlags","CGEventRef","EventField","KeyCode","ScrollEventUnit"],"type":["CGEventField","CGKeyCode","CGScrollEventUnit"]};
+window.SIDEBAR_ITEMS = {"enum":["CGEventTapLocation","CGEventTapOptions","CGEventTapPlacement","CGEventType","CGMouseButton"],"struct":["CGEventFlags","CGEventRef","CGEventTap","EventField","KeyCode","ScrollEventUnit"],"type":["CGEventField","CGEventMask","CGEventTapCallBackFn","CGEventTapProxy","CGKeyCode","CGScrollEventUnit"]};

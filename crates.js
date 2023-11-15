@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["bitflags","block","cocoa","core_foundation","core_foundation_sys","core_graphics","darwin_webkit","dispatch","foreign_types","foreign_types_shared","libc","malloc_buf","objc"];
+window.ALL_CRATES = ["bitflags","block","cocoa","core_foundation","core_foundation_sys","core_graphics","core_graphics_types","darwin_webkit","dispatch","foreign_types","foreign_types_macros","foreign_types_shared","libc","malloc_buf","objc","proc_macro2","quote","syn","unicode_ident"];

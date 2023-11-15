@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/Users/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-foundation-sys-0.6.2/src/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-cb6f1f67f1bcd037.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="core_foundation_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.73.0 (cc66ad468 2023-10-03)" data-channel="1.73.0" data-search-js="search-6dfdfced5eff6596.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-1596385f77d47ef2.css" data-theme-dark-css="dark-0a43001d3fc2282c.css" data-theme-ayu-css="ayu-fd19013d6ce078bf.css" ><script src="../../static.files/storage-db41da1a38ea3cb8.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-1596385f77d47ef2.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-0a43001d3fc2282c.css"><link rel="stylesheet" href="../../static.files/noscript-cffde32267a19fd6.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../core_foundation_sys/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/Users/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-foundation-sys-0.8.4/src/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-cb6f1f67f1bcd037.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="core_foundation_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.73.0 (cc66ad468 2023-10-03)" data-channel="1.73.0" data-search-js="search-6dfdfced5eff6596.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-1596385f77d47ef2.css" data-theme-dark-css="dark-0a43001d3fc2282c.css" data-theme-ayu-css="ayu-fd19013d6ce078bf.css" ><script src="../../static.files/storage-db41da1a38ea3cb8.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-1596385f77d47ef2.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-0a43001d3fc2282c.css"><link rel="stylesheet" href="../../static.files/noscript-cffde32267a19fd6.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../core_foundation_sys/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -152,6 +152,9 @@
 <a href="#152" id="152">152</a>
 <a href="#153" id="153">153</a>
 <a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a>
+<a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2013-2015 The Servo Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution.
 //
@@ -162,23 +165,23 @@
 // except according to those terms.
 
 </span><span class="kw">use </span>std::cmp::Ordering;
-<span class="kw">use </span>std::os::raw::{c_uint, c_long, c_ulong, c_void, c_int};
+<span class="kw">use </span>std::os::raw::{c_uint, c_void, c_int};
 <span class="kw">use </span>string::CFStringRef;
 
 <span class="kw">pub type </span>Boolean = u8;
-<span class="kw">pub type </span>CFIndex = c_long;
 <span class="kw">pub type </span>mach_port_t = c_uint;
 <span class="kw">pub type </span>CFAllocatorRef = <span class="kw-2">*const </span>c_void;
 <span class="kw">pub type </span>CFNullRef = <span class="kw-2">*const </span>c_void;
-<span class="kw">pub type </span>CFHashCode = c_ulong;
-<span class="kw">pub type </span>CFTypeID = c_ulong;
 <span class="kw">pub type </span>CFTypeRef = <span class="kw-2">*const </span>c_void;
-<span class="kw">pub type </span>CFOptionFlags = u32;
 <span class="kw">pub type </span>OSStatus = i32;
 <span class="kw">pub type </span>SInt32 = c_int;
+<span class="kw">pub type </span>CFTypeID = usize;
+<span class="kw">pub type </span>CFOptionFlags = usize;
+<span class="kw">pub type </span>CFHashCode = usize;
+<span class="kw">pub type </span>CFIndex = isize;
 
-<span class="attr">#[repr(i64)]
-#[derive(Clone, Copy)]
+<span class="attr">#[repr(isize)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 </span><span class="kw">pub enum </span>CFComparisonResult {
     LessThan = -<span class="number">1</span>,
     EqualTo = <span class="number">0</span>,
@@ -225,13 +228,13 @@
 </span><span class="kw">pub struct </span>CFAllocatorContext {
     <span class="kw">pub </span>version: CFIndex,
     <span class="kw">pub </span>info: <span class="kw-2">*mut </span>c_void,
-    <span class="kw">pub </span>retain: CFAllocatorRetainCallBack,
-    <span class="kw">pub </span>release: CFAllocatorReleaseCallBack,
-    <span class="kw">pub </span>copyDescription: CFAllocatorCopyDescriptionCallBack,
-    <span class="kw">pub </span>allocate: CFAllocatorAllocateCallBack,
-    <span class="kw">pub </span>reallocate: CFAllocatorReallocateCallBack,
-    <span class="kw">pub </span>deallocate: CFAllocatorDeallocateCallBack,
-    <span class="kw">pub </span>preferredSize: CFAllocatorPreferredSizeCallBack
+    <span class="kw">pub </span>retain: <span class="prelude-ty">Option</span>&lt;CFAllocatorRetainCallBack&gt;,
+    <span class="kw">pub </span>release: <span class="prelude-ty">Option</span>&lt;CFAllocatorReleaseCallBack&gt;,
+    <span class="kw">pub </span>copyDescription: <span class="prelude-ty">Option</span>&lt;CFAllocatorCopyDescriptionCallBack&gt;,
+    <span class="kw">pub </span>allocate: <span class="prelude-ty">Option</span>&lt;CFAllocatorAllocateCallBack&gt;,
+    <span class="kw">pub </span>reallocate: <span class="prelude-ty">Option</span>&lt;CFAllocatorReallocateCallBack&gt;,
+    <span class="kw">pub </span>deallocate: <span class="prelude-ty">Option</span>&lt;CFAllocatorDeallocateCallBack&gt;,
+    <span class="kw">pub </span>preferredSize: <span class="prelude-ty">Option</span>&lt;CFAllocatorPreferredSizeCallBack&gt;
 }
 
 <span class="doccomment">/// Trait for all types which are Core Foundation reference types.
@@ -260,6 +263,9 @@
         ptr <span class="kw">as </span><span class="kw-2">*const </span>T <span class="kw">as </span><span class="kw-2">*mut </span>T
     }
 }
+
+<span class="doccomment">/// Constant used by some functions to indicate failed searches.
+</span><span class="kw">pub static </span>kCFNotFound: CFIndex = -<span class="number">1</span>;
 
 <span class="kw">extern </span>{
     <span class="comment">/*
