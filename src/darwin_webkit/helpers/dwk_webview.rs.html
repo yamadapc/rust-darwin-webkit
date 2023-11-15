@@ -171,16 +171,15 @@
 <a href="#171" id="171">171</a>
 <a href="#172" id="172">172</a>
 <a href="#173" id="173">173</a>
-<a href="#174" id="174">174</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Wraps a `WKWebView`, `WKWebViewConfiguration` &amp; `WKUserContentController`
 </span><span class="kw">use </span>cocoa::appkit::{NSView, NSViewHeightSizable, NSViewWidthSizable};
 <span class="kw">use </span>cocoa::base::{id, nil};
 <span class="kw">use </span>cocoa::foundation::{NSRect, NSString};
 
 <span class="kw">use </span>block::ConcreteBlock;
-<span class="kw">use </span>foundation::<span class="kw-2">*</span>;
-<span class="kw">use </span>webkit::wk_script_message_handler::make_new_handler;
-<span class="kw">use </span>webkit::<span class="kw-2">*</span>;
+<span class="kw">use </span><span class="kw">crate</span>::foundation::<span class="kw-2">*</span>;
+<span class="kw">use </span><span class="kw">crate</span>::webkit::wk_script_message_handler::make_new_handler;
+<span class="kw">use </span><span class="kw">crate</span>::webkit::<span class="kw-2">*</span>;
 
 <span class="doccomment">/// Wraps a `WKWebView`, `WKWebViewConfiguration` &amp; `WKUserContentController`
 ///
@@ -291,7 +290,6 @@
                 <span class="kw">let </span>str = <span class="macro">msg_send!</span>[error, localizedDescription];
                 <span class="kw">let </span>str = string_from_nsstring(str);
                 <span class="macro">println!</span>(<span class="string">&quot;Error {}&quot;</span>, str.as_ref().unwrap().as_str());
-                <span class="kw">return</span>;
             }
         };
         <span class="kw">let </span>b = ConcreteBlock::new(b);

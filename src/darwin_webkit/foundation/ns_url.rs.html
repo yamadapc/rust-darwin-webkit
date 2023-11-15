@@ -733,13 +733,13 @@
 <a href="#733" id="733">733</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Bindings for `NSURL`
 //!
-//! https://developer.apple.com/documentation/foundation/nsurl?language=objc
+//! &lt;https://developer.apple.com/documentation/foundation/nsurl?language=objc&gt;
 </span><span class="kw">use </span>cocoa::base::{id, BOOL};
 
-<span class="kw">use </span>foundation::ns_url_bookmark_creation_options::{
+<span class="kw">use </span><span class="kw">crate</span>::foundation::ns_url_bookmark_creation_options::{
     NSURLBookmarkCreationOptions, NSURLBookmarkFileCreationOptions,
 };
-<span class="kw">use </span>foundation::ns_url_bookmark_resolution_options::NSURLBookmarkResolutionOptions;
+<span class="kw">use </span><span class="kw">crate</span>::foundation::ns_url_bookmark_resolution_options::NSURLBookmarkResolutionOptions;
 
 <span class="kw">pub trait </span>NSURL: Sized {
     <span class="doccomment">/// # Safety
