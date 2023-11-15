@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["CGPathElementType",""]],"struct":[["CGPath",""],["CGPathElement",""],["CGPathElementRef",""],["CGPathRef",""]],"type":[["SysCGPathRef",""]]});
+window.SIDEBAR_ITEMS = {"enum":["CGPathElementType"],"struct":["CGPath","CGPathElement","CGPathElementRef","CGPathRef"],"type":["SysCGPathRef"]};

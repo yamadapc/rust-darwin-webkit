@@ -1,1 +1,1 @@
-initSidebarItems({"static":[["WKWebView",""]],"trait":[["WKWebView",""]]});
+window.SIDEBAR_ITEMS = {"static":["WKWebView"],"trait":["WKWebView"]};

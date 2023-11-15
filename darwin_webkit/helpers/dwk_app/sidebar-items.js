@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["DarwinWKApp","Wraps an NSApplication instance with a main window that contains WebView."]]});
+window.SIDEBAR_ITEMS = {"struct":["DarwinWKApp"]};

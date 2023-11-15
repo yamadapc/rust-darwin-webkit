@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["javascript_callback",""],["string_from_nsstring","Create a `String` pointer from a `NSString`."]],"struct":[["DarwinWKWebView","Wraps a `WKWebView`, `WKWebViewConfiguration` & `WKUserContentController`"]]});
+window.SIDEBAR_ITEMS = {"fn":["javascript_callback","string_from_nsstring"],"struct":["DarwinWKWebView"]};

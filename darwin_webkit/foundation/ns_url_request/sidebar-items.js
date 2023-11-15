@@ -1,1 +1,1 @@
-initSidebarItems({"static":[["NSURLRequest",""]],"trait":[["NSURLRequest",""]]});
+window.SIDEBAR_ITEMS = {"static":["NSURLRequest"],"trait":["NSURLRequest"]};

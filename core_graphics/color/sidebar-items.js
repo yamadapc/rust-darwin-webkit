@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CGColor",""]],"type":[["SysCGColorRef",""]]});
+window.SIDEBAR_ITEMS = {"struct":["CGColor"],"type":["SysCGColorRef"]};

@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["CGImageAlphaInfo",""],["CGImageByteOrderInfo",""]],"struct":[["CGImage",""],["CGImageRef",""]]});
+window.SIDEBAR_ITEMS = {"enum":["CGImageAlphaInfo","CGImageByteOrderInfo"],"struct":["CGImage","CGImageRef"]};

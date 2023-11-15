@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["wk_navigation",""],["wk_script_message_handler","Wraps the WKScriptMessageHandler protocol in Rust"],["wk_web_view",""],["wk_web_view_configuration",""]]});
+window.SIDEBAR_ITEMS = {"mod":["wk_navigation","wk_script_message_handler","wk_web_view","wk_web_view_configuration"]};

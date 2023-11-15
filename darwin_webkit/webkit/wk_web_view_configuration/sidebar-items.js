@@ -1,1 +1,1 @@
-initSidebarItems({"static":[["WKUserContentController",""],["WKWebViewConfiguration",""]],"trait":[["WKUserContentController",""],["WKWebViewConfiguration",""]]});
+window.SIDEBAR_ITEMS = {"static":["WKUserContentController","WKWebViewConfiguration"],"trait":["WKUserContentController","WKWebViewConfiguration"]};

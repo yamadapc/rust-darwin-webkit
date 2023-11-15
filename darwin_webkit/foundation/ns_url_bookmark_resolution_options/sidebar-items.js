@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["NSURLBookmarkResolutionOptions",""]]});
+window.SIDEBAR_ITEMS = {"enum":["NSURLBookmarkResolutionOptions"]};

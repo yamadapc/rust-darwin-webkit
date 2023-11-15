@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["appkit",""],["base",""],["foundation",""],["quartzcore",""]]});
+window.SIDEBAR_ITEMS = {"mod":["appkit","base","foundation","quartzcore"]};

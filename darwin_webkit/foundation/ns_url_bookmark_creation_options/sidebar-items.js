@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["NSURLBookmarkCreationOptions",""]],"type":[["NSURLBookmarkFileCreationOptions",""]]});
+window.SIDEBAR_ITEMS = {"enum":["NSURLBookmarkCreationOptions"],"type":["NSURLBookmarkFileCreationOptions"]};

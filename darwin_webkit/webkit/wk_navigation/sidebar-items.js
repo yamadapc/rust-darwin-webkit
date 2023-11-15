@@ -1,1 +1,1 @@
-initSidebarItems({"static":[["WKNavigation",""]],"trait":[["WKNavigation",""]]});
+window.SIDEBAR_ITEMS = {"static":["WKNavigation"],"trait":["WKNavigation"]};

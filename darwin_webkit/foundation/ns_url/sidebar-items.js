@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["NSURL",""]]});
+window.SIDEBAR_ITEMS = {"trait":["NSURL"]};

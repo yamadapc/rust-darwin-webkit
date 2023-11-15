@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["CFDataCreate",""],["CFDataGetBytePtr",""],["CFDataGetLength",""],["CFDataGetTypeID",""]],"struct":[["CFData","A byte buffer."],["__CFData",""]],"type":[["CFDataRef",""]]});
+window.SIDEBAR_ITEMS = {"fn":["CFDataCreate","CFDataGetBytePtr","CFDataGetLength","CFDataGetTypeID"],"struct":["CFData","__CFData"],"type":["CFDataRef"]};

@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["CGBlendMode",""],["CGTextDrawingMode",""]],"struct":[["CGContext",""],["CGContextRef",""]]});
+window.SIDEBAR_ITEMS = {"enum":["CGBlendMode","CGTextDrawingMode"],"struct":["CGContext","CGContextRef"]};
