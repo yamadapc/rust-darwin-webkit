@@ -7,6 +7,7 @@ license = "MIT"
 keywords = [ "macos", "webkit", "cocoa" ]
 readme = "README.md"
 repository = "https://github.com/yamadapc/rust-darwin-webkit"
+edition = "2021"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 cocoa = "0.25.0"

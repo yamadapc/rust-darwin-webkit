@@ -4,9 +4,9 @@ use cocoa::base::{id, nil};
 use cocoa::foundation::{NSRect, NSString};
 
 use block::ConcreteBlock;
-use foundation::*;
-use webkit::wk_script_message_handler::make_new_handler;
-use webkit::*;
+use crate::foundation::*;
+use crate::webkit::wk_script_message_handler::make_new_handler;
+use crate::webkit::*;
 
 /// Wraps a `WKWebView`, `WKWebViewConfiguration` & `WKUserContentController`
 ///
@@ -117,7 +117,6 @@ impl DarwinWKWebView {
                 let str = msg_send![error, localizedDescription];
                 let str = string_from_nsstring(str);
                 println!("Error {}", str.as_ref().unwrap().as_str());
-                return;
             }
         };
         let b = ConcreteBlock::new(b);

@@ -26,9 +26,6 @@ cargo add darwin-webkit
 
 ## Example
 ```rust
-extern crate cocoa;
-extern crate darwin_webkit;
-
 use darwin_webkit::helpers::dwk_app::DarwinWKApp;
 
 fn main() {
@@ -44,9 +41,6 @@ fn main() {
 
 ## Communication example
 ```rust
-extern crate cocoa;
-extern crate darwin_webkit;
-
 use cocoa::base::id;
 use darwin_webkit::helpers::dwk_app::DarwinWKApp;
 use std::rc::Rc;

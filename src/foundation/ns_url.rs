@@ -3,10 +3,10 @@
 //! https://developer.apple.com/documentation/foundation/nsurl?language=objc
 use cocoa::base::{id, BOOL};
 
-use foundation::ns_url_bookmark_creation_options::{
+use crate::foundation::ns_url_bookmark_creation_options::{
     NSURLBookmarkCreationOptions, NSURLBookmarkFileCreationOptions,
 };
-use foundation::ns_url_bookmark_resolution_options::NSURLBookmarkResolutionOptions;
+use crate::foundation::ns_url_bookmark_resolution_options::NSURLBookmarkResolutionOptions;
 
 pub trait NSURL: Sized {
     /// # Safety

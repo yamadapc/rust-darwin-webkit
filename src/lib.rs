@@ -25,12 +25,8 @@
 //! * `darwin_webkit::helpers::DarwinWKWebView::load_html_string`
 #![allow(non_snake_case)]
 
-extern crate cocoa;
-extern crate core_graphics;
-extern crate libc;
 #[macro_use]
 extern crate objc;
-extern crate block;
 
 pub mod foundation;
 pub mod helpers;
